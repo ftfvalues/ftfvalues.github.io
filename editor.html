@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.75">
+        <link rel="stylesheet" href="./stylesheets/editor.css">
+        <title>FTF Editor</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <b style="font-size: xx-large;">FTF VALUES EDITOR</b><br>
+        <label for="edit">Edit: </label><select name="edit" id="edit">
+            <option value="" id="delete">Select...</option>
+            <option value="hammers">Hammers</option>
+            <option value="gemstones">Gemstones</option>
+        </select><button id="download">Download changes</button><br><span id="info"></span>
+        <div id="main">
+        </div>
+        <div id="container" style="display: none;">
+            <div class="editor">
+                <span id="editor.title" style="text-align: left;">Editing </span>
+                <a href="#" id="editor.exit" onclick="exitEditor();" style="text-decoration: none; background-color: red; -webkit-text-stroke: 0.5px black; font-weight: bold; margin: 5px; padding: 5px; text-align: right;">X</a><br><br>
+                <label for="value">Value: </label><input name="value" id="editor.value" type="text"><br>
+                <label for="demand">Demand: </label><input name="demand" id="editor.demand" type="text"><br>
+                <label for="status">Status: </label><select name="status" id="editor.status"><br><option value="">Select...</option><option value="EOF">Extremely overpaid for</option><option value="OF">Overpaid for</option><option value="H">High</option><option value="G">Good</option><option value="A">Average</option><option value="L">Low</option><option value="T">Trash</option></select><br><br>
+                <button id="editor.save">Save changes</button>
+            </div>
+            <div class="dimmer"></div>
+        </div>
+    </body>
+    <script type="text/javascript" src="./scripts/editor.js"></script>
+</html>

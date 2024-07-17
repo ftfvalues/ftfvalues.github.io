@@ -1,0 +1,58 @@
+.main {
+    display: grid;
+}
+body {
+    background-color: rgb(37, 37, 38);
+    color: rgb(217, 217, 218);
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+.item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    flex-direction: row;
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid rgb(217, 217, 218);
+    border-radius: 8px;
+    min-width: 450px; /* Ensure the item width is at least the width of its content */
+    max-width: 450px;
+}
+img {
+    max-width: 150px;
+    max-height: 150px;
+}
+a {
+    color: rgb(217, 217, 218);
+    font-family: 'Courier New', Courier, monospace;
+}
+.text {
+    margin-left: 10px;
+}
+.iconText {
+    display: inline-flex;
+    align-items: center;
+}
+.iconText img {
+    max-height: 1em;
+}
+.editor {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: rgb(37, 37, 38);
+    padding: 10px;
+    z-index: 2;
+}
+.dimmer {
+    background: rgb(25, 25, 25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
