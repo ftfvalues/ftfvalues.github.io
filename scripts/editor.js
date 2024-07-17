@@ -67,6 +67,17 @@ editor.save.addEventListener("click", function () {
     editor.demand.value = "";
     editor.status.value = "";
 })
+function joinAllItems(data) {
+    return new Promise(function(resolve) {
+        items = {data:[]};
+        for (rarity of Object.keys(data)) {
+            for (item of data[rarity]) {
+                items.data.push(item);
+            };
+        };
+        resolve();
+    });
+};
 edit.addEventListener("change", function() {
     if (!items) document.getElementById("delete").remove();
     items = null;
@@ -74,8 +85,8 @@ edit.addEventListener("change", function() {
     info.innerHTML = "Loading, please wait...<br>"
     $.ajax({
         url: `./json/${edit.value}.json`,
-        success: function(data) {
-            items = data;
+        success: async function(data) {
+            await joinAllItems(data);
             for (let i = 0; i < items.data.length; i++) {
                 const item = items.data[i];
                 const rarityStyle = item.rarity ? ` style="color: ${raritycolors[item.rarity]};"` : ""
@@ -88,10 +99,20 @@ edit.addEventListener("change", function() {
         }
     });
 });
-document.getElementById("download").addEventListener("click", function() {
+function jsonify() {
+    return new Promise(function(resolve) {
+        let obj = {"Common":[],"Rare":[],"Epic":[],"Legendary":[]};
+        for (let i = 0; i <= items.data.length; i++) {
+            if (i == items.data.length) return resolve(JSON.stringify(obj));
+            const item = items.data[i];
+            obj[item.rarity].push(item);
+        };
+    });
+};
+document.getElementById("download").addEventListener("click", async function() {
     const oldInfo = info.innerHTML;
     if (items) {
-        const jsonStr = JSON.stringify(items);
+        const jsonStr = await jsonify();
         const blob = new Blob([jsonStr], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
